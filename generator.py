@@ -5,6 +5,14 @@ import re
 
 ''' TODO Write documentation '''
 
+if len(sys.argv) == 2 and sys.argv[1] == '-':
+	read_from_stdin_flag=True
+	stdin_lines=[]
+	for stdin_line in sys.stdin.readlines():
+		stdin_lines.append(stdin_line.rstrip('\n'))
+else:
+	read_from_stdin_flag=False
+
 class Generator:
 	def __init__(self,channel_title=None,channel_link=None,channel_description=None):
 		titles=open("titles","w+")
@@ -23,7 +31,6 @@ class Generator:
 		self.browser=webdriver.Firefox(firefox_options=options)
 		self.browser.get(self.channel_link)
 		self.bsObj=BeautifulSoup(self.browser.page_source,"lxml")
-		self.browser.quit()
 		links.close()
 		titles.close()
 	
@@ -33,14 +40,21 @@ class Generator:
 		self.new_descriptions=[]
 		''' Edit this according to the site you are 
 		    generating the RSS feed for '''
-		for new_article in self.bsObj.findAll("article",{"class":"item-list"}):
-			new_title=new_article.find("h2").get_text()
-			new_link=new_article.find("h2").find("a")["href"]
-			new_description=new_article.find("div",{"class":"entry"}).find("p").get_text()
-			if new_title not in self.archived_titles and new_link not in self.archived_links:
-				self.new_titles.append(new_title)
-				self.new_links.append(new_link)
-				self.new_descriptions.append(new_description)	
+		if read_from_stdin_flag is True:
+			title_selector=stdin_lines[3]
+			link_selector=stdin_lines[4]
+			description_selector=stdin_lines[5]
+		else:
+			title_selector=input("Enter the title CSS selector: ")
+			link_selector=input("Enter the link CSS selector: ")
+			description_selector=input("Enter description CSS selector: ")
+		for title in self.browser.find_elements_by_css_selector(title_selector):
+			self.new_titles.append(title.text)
+		for link in self.browser.find_elements_by_css_selector(link_selector):
+			self.new_links.append(link.get_attribute("href"))
+		for description in self.browser.find_elements_by_css_selector(description_selector):
+			self.new_descriptions.append(description.text)
+
 
 	def error_no_new_articles(self):
 		if len(self.new_titles) == 0 or len(self.new_links) == 0:
@@ -66,6 +80,7 @@ class Generator:
 			i+=1
 		entry.write("</channel>\n")
 		entry.write("</rss>")
+		self.browser.quit()
 	
 	def archive_new_feeds(self):
 		links=open("links","a")
@@ -78,7 +93,15 @@ class Generator:
 		titles.close()
 
 def main():
-	generator=Generator("DanUBeogradu","https://www.danubeogradu.rs/rubrike/izlasci/","Desavanja u Beogradu")
+	if read_from_stdin_flag is True:
+		title=stdin_lines[0]
+		link=stdin_lines[1]
+		description=stdin_lines[2]
+	else:
+		title=input("Enter the feed title: ")
+		link=input("Enter the feed link: ")
+		description=input("Enter the feed description: ")
+	generator=Generator(title,link,description)
 	generator.find_new_articles()
 	generator.error_no_new_articles()
 	generator.generate_feed_entry()
