@@ -1,9 +1,44 @@
 from selenium import webdriver
-from bs4 import BeautifulSoup
 import sys
-import re
 
 ''' TODO Write documentation '''
+
+''' This is a simple python script that generates RSS feeds from any site.  It
+uses CSS selectors to identify titles, links and article descriptions.  When
+called with no argument, it asks for information like: channel title, link and
+description, then it goes to ask for the CSS selectors for article title, link
+and description. If called with the argument - , it expects the same
+information, line by line, from any standard input. Unchanged, it grabs only
+the links and titles not previously archived.  This is useful because it can be
+automated to make new feed entries for RSS readers.
+
+Stdin file format: Channel_Name Channel_Link Channel_Description (1 liner)
+Article_Title_CSS_Selector Artice_Link_CSS_Selector
+Article_Description_CSS_Selector
+
+CSS Selectors can be easily copied using the browser. I've used Firefox and in
+it you do: Right click (On the element you need the CSS selector for) ->
+Inspect element -> Once you've indentified the correct element, by right
+clicking on the element, you can find Copy -> CSS Selector.
+
+WARNING By default the browser copies the CSS selector for that particular
+element, ex.:
+
+div.listingResult:nth-child(2) > a:nth-child(1) > article:nth-child(1) >
+div:nth-child(2) > header:nth-child(1) > h3:nth-child(1)
+
+This selector will then select this particular element every time. To make it
+select all of the elements with the same CSS selector, you must change the
+first number to N, ex.:
+
+2 -> n
+
+div.listingResult:nth-child(n) > a:nth-child(1) > article:nth-child(1) >
+div:nth-child(2) > header:nth-child(1) > h3:nth-child(1)
+
+This is how it should look. When all of the arguments are set, and the program
+runs, it will create the .xml feed file, with no whitespaces in the name.  '''
+
 
 if len(sys.argv) == 2 and sys.argv[1] == '-':
 	read_from_stdin_flag=True
@@ -15,6 +50,11 @@ else:
 
 class Generator:
 	def __init__(self,channel_title=None,channel_link=None,channel_description=None):
+		''' This sets up the generator. The archived article titles and
+		links are read into memory. If no "titles" and "links" files
+		are present, they will be created. The channel title, link, and
+		description is set. The browser opens and waits for the
+		javascript to execute, and load the newly made html. '''
 		titles=open("titles","w+")
 		links=open("links","w+")
 		self.archived_titles=[]
@@ -30,16 +70,18 @@ class Generator:
 		options.add_argument("--headless")
 		self.browser=webdriver.Firefox(firefox_options=options)
 		self.browser.get(self.channel_link)
-		self.bsObj=BeautifulSoup(self.browser.page_source,"lxml")
 		links.close()
 		titles.close()
 	
 	def find_new_articles(self):
+		''' This is the bread and butter. This function is the one that
+		extracts the article info from the site. Some sites provide the
+		description in two paragraph elements for whatever reason. If
+		this is the case, I encourage you to edit the code yourself, or
+		wait for the feature to get coded, lmao. '''
 		self.new_titles=[]
 		self.new_links=[]
 		self.new_descriptions=[]
-		''' Edit this according to the site you are 
-		    generating the RSS feed for '''
 		if read_from_stdin_flag is True:
 			title_selector=stdin_lines[3]
 			link_selector=stdin_lines[4]
@@ -57,11 +99,15 @@ class Generator:
 
 
 	def error_no_new_articles(self):
+		''' Check if any new information is found, if not. Exit and
+		inform the user. '''
 		if len(self.new_titles) == 0 or len(self.new_links) == 0:
 			print("No new articles, exiting!")
 			sys.exit(2)
 	
 	def generate_feed_entry(self):
+		''' This just does the work of actually writing the .xml file
+		with the extracted information. Nothing spectacluar. '''
 		entry=open(self.channel_title.replace(" ","") + ".xml","w")
 		entry.write('<?xml version="1.0" encoding="UTF-8" ?>\n')
 		entry.write('<rss version="2.0">\n')
