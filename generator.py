@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 import sys
 import re
 
+''' TODO Write documentation '''
+
 class Generator:
 	def __init__(self,channel_title=None,channel_link=None,channel_description=None):
 		titles=open("titles","w+")
@@ -46,7 +48,7 @@ class Generator:
 			sys.exit(2)
 	
 	def generate_feed_entry(self):
-		entry=open(self.channel_title + ".xml","w")
+		entry=open(self.channel_title.replace(" ","") + ".xml","w")
 		entry.write('<?xml version="1.0" encoding="UTF-8" ?>\n')
 		entry.write('<rss version="2.0">\n')
 		entry.write("<channel>\n")
