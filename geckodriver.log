@@ -1,0 +1,141 @@
+1556631984447	mozrunner::runner	INFO	Running command: "/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.MledWBLUp6eg"
+*** You are running in headless mode.
+1556631984928	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1556631984929	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1556631984929	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+GLib-GIO-Message: 15:46:25.912: Using the 'memory' GSettings backend.  Your settings will not be saved or shared with other applications.
+1556631986424	Marionette	INFO	Listening on port 34341
+1556631986457	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1556632022298	mozrunner::runner	INFO	Running command: "/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.KHKgrg8Nypyw"
+*** You are running in headless mode.
+1556632022747	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1556632022748	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1556632022748	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+GLib-GIO-Message: 15:47:03.713: Using the 'memory' GSettings backend.  Your settings will not be saved or shared with other applications.
+1556632024187	Marionette	INFO	Listening on port 43199
+1556632024221	Marionette	WARN	TLS certificate errors will be ignored for this session
+1556632032032	Marionette	INFO	Stopped listening on port 43199
+1556632084726	mozrunner::runner	INFO	Running command: "/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.qUXfazjhQJJN"
+*** You are running in headless mode.
+1556632085178	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1556632085179	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1556632085179	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+GLib-GIO-Message: 15:48:06.106: Using the 'memory' GSettings backend.  Your settings will not be saved or shared with other applications.
+1556632086575	Marionette	INFO	Listening on port 41111
+1556632086633	Marionette	WARN	TLS certificate errors will be ignored for this session
+1556632093245	Marionette	INFO	Stopped listening on port 41111
+1556632109479	mozrunner::runner	INFO	Running command: "/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.C3DMc6TZiBg8"
+*** You are running in headless mode.
+1556632109925	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1556632109925	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1556632109925	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+GLib-GIO-Message: 15:48:30.891: Using the 'memory' GSettings backend.  Your settings will not be saved or shared with other applications.
+1556632111348	Marionette	INFO	Listening on port 41837
+1556632111388	Marionette	WARN	TLS certificate errors will be ignored for this session
+1556632117825	Marionette	INFO	Stopped listening on port 41837
+1556632199208	mozrunner::runner	INFO	Running command: "/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.XsId0aXP56X9"
+*** You are running in headless mode.
+1556632199661	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1556632199661	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1556632199661	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+GLib-GIO-Message: 15:50:00.632: Using the 'memory' GSettings backend.  Your settings will not be saved or shared with other applications.
+1556632201113	Marionette	INFO	Listening on port 36837
+1556632201215	Marionette	WARN	TLS certificate errors will be ignored for this session
+1556632207636	Marionette	INFO	Stopped listening on port 36837
+1556632256388	mozrunner::runner	INFO	Running command: "/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.nyFgvnPqtTaA"
+*** You are running in headless mode.
+1556632256854	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1556632256854	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1556632256854	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+GLib-GIO-Message: 15:50:57.767: Using the 'memory' GSettings backend.  Your settings will not be saved or shared with other applications.
+1556632258250	Marionette	INFO	Listening on port 44407
+1556632258298	Marionette	WARN	TLS certificate errors will be ignored for this session
+1556632264647	Marionette	INFO	Stopped listening on port 44407
+1556632287807	mozrunner::runner	INFO	Running command: "/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.jYZfyAX6DAxo"
+*** You are running in headless mode.
+1556632288266	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1556632288267	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1556632288267	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+GLib-GIO-Message: 15:51:29.203: Using the 'memory' GSettings backend.  Your settings will not be saved or shared with other applications.
+1556632289669	Marionette	INFO	Listening on port 37081
+1556632289715	Marionette	WARN	TLS certificate errors will be ignored for this session
+1556632296434	Marionette	INFO	Stopped listening on port 37081
+1556632309571	mozrunner::runner	INFO	Running command: "/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.1hdg3IIY3426"
+*** You are running in headless mode.
+1556632310031	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1556632310031	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1556632310031	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+GLib-GIO-Message: 15:51:50.974: Using the 'memory' GSettings backend.  Your settings will not be saved or shared with other applications.
+1556632311448	Marionette	INFO	Listening on port 45953
+1556632311488	Marionette	WARN	TLS certificate errors will be ignored for this session
+1556632326234	mozrunner::runner	INFO	Running command: "/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.eFlozpmq29SE"
+*** You are running in headless mode.
+1556632326695	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1556632326695	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1556632326695	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+GLib-GIO-Message: 15:52:07.615: Using the 'memory' GSettings backend.  Your settings will not be saved or shared with other applications.
+1556632328096	Marionette	INFO	Listening on port 35949
+1556632328141	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1556632334799	Marionette	INFO	Stopped listening on port 35949
+1556632348296	mozrunner::runner	INFO	Running command: "/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.corSJnEKxHbX"
+*** You are running in headless mode.
+1556632348744	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1556632348745	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1556632348745	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+GLib-GIO-Message: 15:52:29.718: Using the 'memory' GSettings backend.  Your settings will not be saved or shared with other applications.
+1556632350191	Marionette	INFO	Listening on port 33437
+1556632350210	Marionette	WARN	TLS certificate errors will be ignored for this session
+1556632356563	Marionette	INFO	Stopped listening on port 33437
+1556632831777	mozrunner::runner	INFO	Running command: "/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.4SgqVQcVYozu"
+*** You are running in headless mode.
+1556632832226	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1556632832226	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1556632832226	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+GLib-GIO-Message: 16:00:33.161: Using the 'memory' GSettings backend.  Your settings will not be saved or shared with other applications.
+1556632833651	Marionette	INFO	Listening on port 35189
+1556632833695	Marionette	WARN	TLS certificate errors will be ignored for this session
+1556632840581	Marionette	INFO	Stopped listening on port 35189
+JavaScript error: resource://gre/modules/WebProgressChild.jsm, line 61: TypeError: this.mm.content is null
+1556632870060	mozrunner::runner	INFO	Running command: "/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.s2pBpkpt2Yy1"
+*** You are running in headless mode.
+1556632870494	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1556632870495	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1556632870495	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+GLib-GIO-Message: 16:01:11.440: Using the 'memory' GSettings backend.  Your settings will not be saved or shared with other applications.
+1556632871961	Marionette	INFO	Listening on port 45851
+1556632871975	Marionette	WARN	TLS certificate errors will be ignored for this session
+1556632878475	Marionette	INFO	Stopped listening on port 45851
+1556632915479	mozrunner::runner	INFO	Running command: "/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.FUPrZ0UQBpRc"
+*** You are running in headless mode.
+1556632915915	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1556632915916	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1556632915916	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+GLib-GIO-Message: 16:01:56.818: Using the 'memory' GSettings backend.  Your settings will not be saved or shared with other applications.
+1556632917324	Marionette	INFO	Listening on port 38075
+1556632917386	Marionette	WARN	TLS certificate errors will be ignored for this session
+1556632924066	Marionette	INFO	Stopped listening on port 38075
+1556632968736	mozrunner::runner	INFO	Running command: "/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.FpUEjUS52nB8"
+*** You are running in headless mode.
+1556632969187	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1556632969188	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1556632969188	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+GLib-GIO-Message: 16:02:50.142: Using the 'memory' GSettings backend.  Your settings will not be saved or shared with other applications.
+1556632970605	Marionette	INFO	Listening on port 38539
+1556632970647	Marionette	WARN	TLS certificate errors will be ignored for this session
+1556632977079	Marionette	INFO	Stopped listening on port 38539
