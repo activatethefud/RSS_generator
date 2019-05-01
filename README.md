@@ -1,5 +1,5 @@
 # Python RSS feed generator 
-#### (not agregator)
+#### (not aggregator)
 
 This is a simple python script that generates RSS feeds from any site.  It
 uses CSS selectors to identify titles, links and article descriptions.  When
@@ -11,7 +11,7 @@ the links and titles not previously archived.  This is useful because it can be
 automated to make new feed entries for RSS readers.
 
 ### Dependencies
-You will need the `selenium` module for python, as well as the neccessary webdriver binary for your
+You will need the `selenium` module for python, as well as the necessary webdriver binary for your
 chosen web browser. For firefox I used [geckodriver](https://github.com/mozilla/geckodriver/releases).
 
 ### Usage
@@ -21,12 +21,12 @@ Stdin file format:
 * Channel_Link 
 * Channel_Description (1 liner)
 * Article_Title_CSS_Selector
-* Artice_Link_CSS_Selector
+* Article_Link_CSS_Selector
 * Article_Description_CSS_Selector
 
 CSS Selectors can be easily copied using the browser. I've used Firefox and in
 it you do: Right click (On the element you need the CSS selector for) ->
-Inspect element -> Once you've indentified the correct element, by right
+Inspect element -> Once you've identified the correct element, by right
 clicking on the element, you can find Copy -> CSS Selector.
 
 **WARNING** By default the browser copies the CSS selector for that particular
