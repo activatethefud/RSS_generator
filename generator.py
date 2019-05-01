@@ -87,7 +87,8 @@ class Generator:
 		if read_from_stdin_flag is True:
 			title_selector=stdin_lines[3]
 			link_selector=stdin_lines[4]
-			description_selector=stdin_lines[5]
+			if len(sys.argv) == 6:
+				description_selector=stdin_lines[5]
 		else:
 			title_selector=input("Enter the title CSS selector: ")
 			link_selector=input("Enter the link CSS selector: ")
@@ -96,8 +97,9 @@ class Generator:
 			self.new_titles.append(title.text)
 		for link in self.browser.find_elements_by_css_selector(link_selector):
 			self.new_links.append(link.get_attribute("href"))
-		for description in self.browser.find_elements_by_css_selector(description_selector):
-			self.new_descriptions.append(description.text)
+		if len(sys.argv) == 6:
+			for description in self.browser.find_elements_by_css_selector(description_selector):
+				self.new_descriptions.append(description.text)
 
 
 	def error_no_new_articles(self):
@@ -123,7 +125,8 @@ class Generator:
 			entry.write("  <item>\n")
 			entry.write("    <title>" + self.new_titles[i] + "</title>\n")
 			entry.write("    <link>" + self.new_links[i] + "</link>\n")
-			entry.write("    <description>" + self.new_descriptions[i] + "</description>\n")
+			if len(sys.argv) == 6:
+				entry.write("    <description>" + self.new_descriptions[i] + "</description>\n")
 			entry.write("  </item>\n")
 			i+=1
 		entry.write("</channel>\n")
