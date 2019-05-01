@@ -47,6 +47,7 @@ if len(sys.argv) == 2 and sys.argv[1] == '-':
 	stdin_lines=[]
 	for stdin_line in sys.stdin.readlines():
 		stdin_lines.append(stdin_line.rstrip('\n'))
+	num_of_input_lines=len(stdin_lines)
 else:
 	read_from_stdin_flag=False
 
@@ -70,7 +71,7 @@ class Generator:
 		self.channel_description=channel_description
 		options=webdriver.FirefoxOptions()
 		options.add_argument("--headless")
-		self.browser=webdriver.Firefox(firefox_options=options)
+		self.browser=webdriver.Firefox(options=options)
 		self.browser.get(self.channel_link)
 		links.close()
 		titles.close()
@@ -87,7 +88,7 @@ class Generator:
 		if read_from_stdin_flag is True:
 			title_selector=stdin_lines[3]
 			link_selector=stdin_lines[4]
-			if len(sys.argv) == 6:
+			if num_of_input_lines == 6:
 				description_selector=stdin_lines[5]
 		else:
 			title_selector=input("Enter the title CSS selector: ")
@@ -97,7 +98,7 @@ class Generator:
 			self.new_titles.append(title.text)
 		for link in self.browser.find_elements_by_css_selector(link_selector):
 			self.new_links.append(link.get_attribute("href"))
-		if len(sys.argv) == 6:
+		if num_of_input_lines == 6:
 			for description in self.browser.find_elements_by_css_selector(description_selector):
 				self.new_descriptions.append(description.text)
 
@@ -125,8 +126,10 @@ class Generator:
 			entry.write("  <item>\n")
 			entry.write("    <title>" + self.new_titles[i] + "</title>\n")
 			entry.write("    <link>" + self.new_links[i] + "</link>\n")
-			if len(sys.argv) == 6:
+			if num_of_input_lines == 6:
 				entry.write("    <description>" + self.new_descriptions[i] + "</description>\n")
+			else:
+				entry.write("    <description>" + "</description>\n")
 			entry.write("  </item>\n")
 			i+=1
 		entry.write("</channel>\n")
