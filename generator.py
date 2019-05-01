@@ -58,8 +58,8 @@ class Generator:
 		are present, they will be created. The channel title, link, and
 		description is set. The browser opens and waits for the
 		javascript to execute, and load the newly made html. '''
-		titles=open("titles","w+")
-		links=open("links","w+")
+		titles=open("titles","r")
+		links=open("links","r")
 		self.archived_titles=[]
 		self.archived_links=[]
 		for archived_title in titles.readlines():
@@ -95,9 +95,11 @@ class Generator:
 			link_selector=input("Enter the link CSS selector: ")
 			description_selector=input("Enter description CSS selector: ")
 		for title in self.browser.find_elements_by_css_selector(title_selector):
-			self.new_titles.append(title.text)
+			if title.text not in self.archived_titles:
+				self.new_titles.append(title.text)
 		for link in self.browser.find_elements_by_css_selector(link_selector):
-			self.new_links.append(link.get_attribute("href"))
+			if link.get_attribute("href") not in self.archived_links:
+				self.new_links.append(link.get_attribute("href"))
 		if num_of_input_lines == 6:
 			for description in self.browser.find_elements_by_css_selector(description_selector):
 				self.new_descriptions.append(description.text)
