@@ -12,7 +12,7 @@ automated to make new feed entries for RSS readers.
 
 ### Dependencies
 You will need the `selenium` module for python, as well as the neccessary webdriver binary for your
-chosen web browser. For firefox I used [geckodriver]("https://github.com/mozilla/geckodriver/releases").
+chosen web browser. For firefox I used [geckodriver]("https://github.com/mozilla/geckodriver").
 
 ### Usage
 
