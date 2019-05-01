@@ -15,12 +15,12 @@ Channel_Name
 Channel_Link
 Channel_Description (1 liner)
 Article_Title_CSS_Selector
-Artice_Link_CSS_Selector
+Article_Link_CSS_Selector
 Article_Description_CSS_Selector
 
 CSS Selectors can be easily copied using the browser. I've used Firefox and in
 it you do: Right click (On the element you need the CSS selector for) ->
-Inspect element -> Once you've indentified the correct element, by right
+Inspect element -> Once you've identified the correct element, by right
 clicking on the element, you can find Copy -> CSS Selector.
 
 WARNING By default the browser copies the CSS selector for that particular
@@ -114,7 +114,7 @@ class Generator:
 	
 	def generate_feed_entry(self):
 		''' This just does the work of actually writing the .xml file
-		with the extracted information. Nothing spectacluar. '''
+		with the extracted information. Nothing spectacular. '''
 		entry=open(self.channel_title.replace(" ","") + ".xml","w")
 		entry.write('<?xml version="1.0" encoding="UTF-8" ?>\n')
 		entry.write('<rss version="2.0">\n')
