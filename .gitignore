@@ -1,1 +1,6 @@
+.xml
+selectors
+links
+titles
 *.xml
+geckodriver.log
