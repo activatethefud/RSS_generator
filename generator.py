@@ -1,8 +1,6 @@
 from selenium import webdriver
 import sys
 
-''' TODO Write documentation '''
-
 ''' This is a simple python script that generates RSS feeds from any site.  It
 uses CSS selectors to identify titles, links and article descriptions.  When
 called with no argument, it asks for information like: channel title, link and
@@ -12,8 +10,12 @@ information, line by line, from any standard input. Unchanged, it grabs only
 the links and titles not previously archived.  This is useful because it can be
 automated to make new feed entries for RSS readers.
 
-Stdin file format: Channel_Name Channel_Link Channel_Description (1 liner)
-Article_Title_CSS_Selector Artice_Link_CSS_Selector
+Stdin file format: 
+Channel_Name
+Channel_Link
+Channel_Description (1 liner)
+Article_Title_CSS_Selector
+Artice_Link_CSS_Selector
 Article_Description_CSS_Selector
 
 CSS Selectors can be easily copied using the browser. I've used Firefox and in
