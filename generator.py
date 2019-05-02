@@ -110,6 +110,7 @@ class Generator:
 		inform the user. '''
 		if len(self.new_titles) == 0 or len(self.new_links) == 0:
 			print("No new articles, exiting!")
+			self.browser.quit()
 			sys.exit(2)
 	
 	def generate_feed_entry(self):
