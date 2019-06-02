@@ -1,4 +1,5 @@
 from selenium import webdriver
+import os
 import sys
 
 ''' This is a simple python script that generates RSS feeds from any site.  It
@@ -66,14 +67,14 @@ class Generator:
 		self.channel_description=channel_description
 
 		options=webdriver.FirefoxOptions()
-		options.add_argument("--headless")
+		#options.add_argument("--headless")
 		self.browser=webdriver.Firefox(options=options)
 		self.browser.get(self.channel_link)
 
 		links.close()
 		titles.close()
 	
-	def find_new_articles(self):
+	def find_new_articles(self,title_selector,link_selector,description_selector):
 		''' This is the bread and butter. This function is the one that
 		extracts the article info from the site. Some sites provide the
 		description in two paragraph elements for whatever reason. If
@@ -83,21 +84,7 @@ class Generator:
 		self.new_titles=[]
 		self.new_links=[]
 		self.new_descriptions=[]
-
-		if read_from_stdin_flag is True:
-
-			title_selector=stdin_lines[3]
-			link_selector=stdin_lines[4]
-
-			if num_of_input_lines == 6:
-
-				description_selector=stdin_lines[5]
-		else:
-
-			title_selector=input("Enter the title CSS selector: ")
-			link_selector=input("Enter the link CSS selector: ")
-			description_selector=input("Enter description CSS selector: ")
-
+		
 		for title in self.browser.find_elements_by_css_selector(title_selector):
 			if title.text not in self.archived_titles:
 				self.new_titles.append(title.text)
@@ -106,9 +93,8 @@ class Generator:
 			if link.get_attribute("href") not in self.archived_links:
 				self.new_links.append(link.get_attribute("href"))
 
-		if num_of_input_lines == 6:
-			for description in self.browser.find_elements_by_css_selector(description_selector):
-				self.new_descriptions.append(description.text)
+		for description in self.browser.find_elements_by_css_selector(description_selector):
+			self.new_descriptions.append(description.text)
 
 
 	def error_no_new_articles(self):
@@ -141,10 +127,7 @@ class Generator:
 			entry.write("  <item>\n")
 			entry.write("    <title>" + self.new_titles[i] + "</title>\n")
 			entry.write("    <link>" + self.new_links[i] + "</link>\n")
-			if num_of_input_lines == 6:
-				entry.write("    <description>" + self.new_descriptions[i] + "</description>\n")
-			else:
-				entry.write("    <description>" + "</description>\n")
+			entry.write("    <description>" + self.new_descriptions[i] + "</description>\n")
 			entry.write("  </item>\n")
 			i+=1
 		entry.write("</channel>\n")
@@ -167,14 +150,33 @@ class Generator:
 		titles.close()
 
 def main():
+	
+	for feed in os.listdir("."):
 
-	title=stdin_lines[0]
-	link=stdin_lines[1]
-	description=stdin_lines[2]
+		if feed.endswith(".txt"):
 
-	generator=Generator(title,link,description)
-	generator.find_new_articles()
-	generator.error_no_new_articles()
-	generator.generate_feed_entry()
-	generator.archive_new_feeds()
+			input_file=open(feed,"r")
+			information=input_file.readlines()
+
+			i=0
+			info_len=len(information)
+			while i<info_len:
+				information[i]=information[i].rstrip('\n')
+				i+=1
+
+			title=information[0]
+			link=information[1]
+			description=information[2]
+
+			title_selector=information[3]
+			link_selector=information[4]
+			description_selector=information[5]
+		
+			generator=Generator(title,link,description)
+			generator.find_new_articles(title_selector,link_selector,description_selector)
+			generator.error_no_new_articles()
+			generator.generate_feed_entry()
+			generator.archive_new_feeds()
+
+			input_file.close()
 main()
