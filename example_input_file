@@ -1,6 +1,0 @@
-GameSpot
-https://www.gamespot.com/news/
-Gaming news.
-article.media-article:nth-child(n) > a:nth-child(1) > div:nth-child(2) > h3:nth-child(1)
-article.media-article:nth-child(n) > a:nth-child(1)
-article.media-article:nth-child(n) > a:nth-child(1) > div:nth-child(2) > p:nth-child(2)
