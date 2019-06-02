@@ -6,10 +6,8 @@ import sys
 uses CSS selectors to identify titles, links and article descriptions.  When
 called with no argument, it asks for information like: channel title, link and
 description, then it goes to ask for the CSS selectors for article title, link
-and description. If called with the argument - , it expects the same
-information, line by line, from any standard input. Unchanged, it grabs only
-the links and titles not previously archived.  This is useful because it can be
-automated to make new feed entries for RSS readers.
+and description. Scans the working directory and uses all .txt files as inputs
+and makes feeds.
 
 Stdin file format: 
 Channel_Name
@@ -150,7 +148,9 @@ class Generator:
 		titles.close()
 
 def main():
-	
+	''' Iterate over all .txt files in the directory.  This is useful for
+	making a script that periodically scans all feeds for updates, without
+	opening a new browser for each feed ''' 
 	for feed in os.listdir("."):
 
 		if feed.endswith(".txt"):
@@ -158,12 +158,14 @@ def main():
 			input_file=open(feed,"r")
 			information=input_file.readlines()
 
+			''' Strip newline from every line of input '''
 			i=0
 			info_len=len(information)
 			while i<info_len:
 				information[i]=information[i].rstrip('\n')
 				i+=1
 
+			''' Grab the information to send to the generator '''
 			title=information[0]
 			link=information[1]
 			description=information[2]
@@ -180,3 +182,4 @@ def main():
 
 			input_file.close()
 main()
+
