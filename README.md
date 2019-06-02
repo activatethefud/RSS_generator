@@ -5,10 +5,8 @@ This is a simple python script that generates RSS feeds from any site.  It
 uses CSS selectors to identify titles, links and article descriptions.  When
 called with no argument, it asks for information like: channel title, link and
 description, then it goes to ask for the CSS selectors for article title, link
-and description. If called with the argument - , it expects the same
-information, line by line, from any standard input. Unchanged, it grabs only
-the links and titles not previously archived.  This is useful because it can be
-automated to make new feed entries for RSS readers.
+and description. Scans the directory and uses all .txt files as input to generate
+RSS feeds.
 
 ### Dependencies
 You will need the `selenium` module for python, as well as the necessary webdriver binary for your
