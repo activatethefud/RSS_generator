@@ -40,6 +40,11 @@ div:nth-child(2) > header:nth-child(1) > h3:nth-child(1)
 This is how it should look. When all of the arguments are set, and the program
 runs, it will create the .xml feed file, with no whitespaces in the name.  '''
 
+# Set webdriver as global
+options=webdriver.FirefoxOptions()
+#options.add_argument("--headless")
+browser=webdriver.Firefox(options=options)
+
 
 class Generator:
 	def __init__(self,channel_title=None,channel_link=None,channel_description=None):
@@ -51,23 +56,19 @@ class Generator:
 
 		titles=open("titles","r")
 		links=open("links","r")
+
 		self.archived_titles=[]
 		self.archived_links=[]
+		self.channel_link=channel_link
+		self.channel_title=channel_title
+		self.channel_description=channel_description
 
 		for archived_title in titles.readlines():
 			self.archived_titles.append(archived_title.rstrip('\n'))
 
 		for archived_link in links.readlines():
-			self.archived_links.append(archived_link.rstrip('\n'))
+			self.channel_description=channel_description
 
-		self.channel_title=channel_title
-		self.channel_link=channel_link
-		self.channel_description=channel_description
-
-		options=webdriver.FirefoxOptions()
-		#options.add_argument("--headless")
-		self.browser=webdriver.Firefox(options=options)
-		self.browser.get(self.channel_link)
 
 		links.close()
 		titles.close()
@@ -83,15 +84,15 @@ class Generator:
 		self.new_links=[]
 		self.new_descriptions=[]
 		
-		for title in self.browser.find_elements_by_css_selector(title_selector):
+		for title in browser.find_elements_by_css_selector(title_selector):
 			if title.text not in self.archived_titles:
 				self.new_titles.append(title.text)
 
-		for link in self.browser.find_elements_by_css_selector(link_selector):
+		for link in browser.find_elements_by_css_selector(link_selector):
 			if link.get_attribute("href") not in self.archived_links:
 				self.new_links.append(link.get_attribute("href"))
 
-		for description in self.browser.find_elements_by_css_selector(description_selector):
+		for description in browser.find_elements_by_css_selector(description_selector):
 			self.new_descriptions.append(description.text)
 
 
@@ -103,7 +104,7 @@ class Generator:
 
 			print("No new articles, exiting!")
 
-			self.browser.quit()
+			browser.quit()
 			sys.exit(2)
 	
 	def generate_feed_entry(self):
@@ -131,8 +132,6 @@ class Generator:
 		entry.write("</channel>\n")
 		entry.write("</rss>")
 
-		self.browser.quit()
-	
 	def archive_new_feeds(self):
 
 		links=open("links","a")
@@ -170,6 +169,8 @@ def main():
 			link=information[1]
 			description=information[2]
 
+			browser.get(link)
+
 			title_selector=information[3]
 			link_selector=information[4]
 			description_selector=information[5]
@@ -181,5 +182,7 @@ def main():
 			generator.archive_new_feeds()
 
 			input_file.close()
+
+	browser.quit()
 main()
 
