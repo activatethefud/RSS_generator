@@ -18,9 +18,9 @@ class Generator:
 		javascript to execute, and load the newly made html. '''
 
 		# Create titles and links if they don't exist.
-		if os.isfile("titles") is False:
+		if os.path.isfile("titles") is False:
 			open("titles","w").close()
-		if os.isfile("links") is False:
+		if os.path.isfile("links") is False:
 			open("links","w").close()
 
 		titles=open("titles","r")
