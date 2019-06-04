@@ -104,9 +104,9 @@ class Generator:
 
 			print("No new articles, exiting!")
 
-			browser.quit()
-			sys.exit(2)
-	
+			return 1
+		return 0
+			
 	def generate_feed_entry(self):
 		''' This just does the work of actually writing the .xml file
 		with the extracted information. Nothing spectacular. '''
@@ -177,7 +177,10 @@ def main():
 		
 			generator=Generator(title,link,description)
 			generator.find_new_articles(title_selector,link_selector,description_selector)
-			generator.error_no_new_articles()
+
+			if generator.error_no_new_articles() is True:
+				continue
+
 			generator.generate_feed_entry()
 			generator.archive_new_feeds()
 
