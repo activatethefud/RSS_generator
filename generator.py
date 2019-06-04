@@ -62,6 +62,7 @@ class Generator:
 		self.channel_link=channel_link
 		self.channel_title=channel_title
 		self.channel_description=channel_description
+		self.filename=self.channel_title.replace(" ","") + ".xml"
 
 		for archived_title in titles.readlines():
 			self.archived_titles.append(archived_title.rstrip('\n'))
@@ -72,6 +73,9 @@ class Generator:
 
 		links.close()
 		titles.close()
+
+	def get_filename(self):
+		return self.filename
 	
 	def find_new_articles(self,title_selector,link_selector,description_selector):
 		''' This is the bread and butter. This function is the one that
@@ -106,12 +110,46 @@ class Generator:
 
 			return 1
 		return 0
-			
-	def generate_feed_entry(self):
-		''' This just does the work of actually writing the .xml file
-		with the extracted information. Nothing spectacular. '''
 
-		entry=open(self.channel_title.replace(" ","") + ".xml","w")
+	def append_feed(self):
+		''' Append to the .xml file if it already exists,
+		stacking entries into the feed. '''
+
+		# Save all of the previous entries
+		entry=open(self.filename,"r")
+		old_entry=entry.readlines()
+		entry.close()
+
+		entry=open(self.filename,"w")
+
+		# Delete closing tabs to prepare for appending
+		del old_entry[-1]
+		del old_entry[-1]
+
+		for line in old_entry:
+			entry.write(line)
+
+		# Append new feeds
+		i=0
+		num_of_entries=len(self.new_titles)
+
+		while i<num_of_entries:
+			entry.write("  <item>\n")
+			entry.write("    <title>" + self.new_titles[i] + "</title>\n")
+			entry.write("    <link>" + self.new_links[i] + "</link>\n")
+			entry.write("    <description>" + self.new_descriptions[i] + "</description>\n")
+			entry.write("  </item>\n")
+			i+=1
+		
+		# Close the feed
+		entry.write("</channel>\n")
+		entry.write("</rss>")
+		entry.close()
+			
+	def generate_new_feed(self):
+		''' Generate the starting .xml file to later append new feeds to '''
+
+		entry=open(self.filename,"w")
 		entry.write('<?xml version="1.0" encoding="UTF-8" ?>\n')
 		entry.write('<rss version="2.0">\n')
 		entry.write("<channel>\n")
@@ -131,6 +169,7 @@ class Generator:
 			i+=1
 		entry.write("</channel>\n")
 		entry.write("</rss>")
+		entry.close()
 
 	def archive_new_feeds(self):
 
@@ -181,7 +220,11 @@ def main():
 			if generator.error_no_new_articles() is True:
 				continue
 
-			generator.generate_feed_entry()
+			if os.path.isfile(generator.get_filename()) is False:
+				generator.generate_new_feed()
+			else:
+				generator.append_feed()
+
 			generator.archive_new_feeds()
 
 			input_file.close()
