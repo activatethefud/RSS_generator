@@ -5,7 +5,7 @@ import sys
 from random import *
 
 class Generator:
-	def __init__(self,channel_title=None,channel_link=None,channel_description=None):
+	def __init__(self,browser=None,channel_title=None,channel_link=None,channel_description=None):
 		''' This sets up the generator. The archived article titles and
 		links are read into memory. If no "titles" and "links" files
 		are present, they will be created. The channel title, link, and
@@ -15,6 +15,7 @@ class Generator:
 		titles=open("titles","r")
 		links=open("links","r")
 
+		self.browser=browser
 		self.archived_titles=[]
 		self.archived_links=[]
 		self.channel_link=channel_link
@@ -46,15 +47,15 @@ class Generator:
 		self.new_links=[]
 		self.new_descriptions=[]
 		
-		for title in browser.find_elements_by_css_selector(title_selector):
+		for title in self.browser.find_elements_by_css_selector(title_selector):
 			if title.text not in self.archived_titles:
 				self.new_titles.append(title.text)
 
-		for link in browser.find_elements_by_css_selector(link_selector):
+		for link in self.browser.find_elements_by_css_selector(link_selector):
 			if link.get_attribute("href") not in self.archived_links:
 				self.new_links.append(link.get_attribute("href"))
 
-		for description in browser.find_elements_by_css_selector(description_selector):
+		for description in self.browser.find_elements_by_css_selector(description_selector):
 			self.new_descriptions.append(description.text)
 
 
