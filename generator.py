@@ -50,7 +50,7 @@ your scans '''
 
 # Set up Firefox preference for proxy with TOR
 
-def setup_webdriver(PROXY_HOST,PROXY_PORT):
+def setup_webdriver():
 	fp=webdriver.FirefoxProfile()
 	options=webdriver.FirefoxOptions()
 	options.add_argument("--headless")
@@ -63,7 +63,7 @@ def setup_webdriver(PROXY_HOST,PROXY_PORT):
 
 	return webdriver.Firefox(firefox_profile=fp,options=options)
 
-browser=setup_webdriver(HOST,PORT)
+browser=setup_webdriver()
 
 def main():
 	''' Iterate over all .txt files in the directory.  This is useful for
