@@ -102,7 +102,7 @@ class Generator:
 
 		if len(self.new_titles) == 0 or len(self.new_links) == 0:
 
-			print("No new articles, exiting!")
+			print("No new articles for feed %s, exiting!" % (self.channel_title))
 
 			return 1
 		return 0
