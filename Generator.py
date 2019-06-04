@@ -7,7 +7,13 @@ from random import *
 # Helper function needed to turn & intp &amp
 def format_title_special_chars(title):
 	title_string=title.split()
-	position=title_string.find('&')
+
+	# Find & in the title, if not, exit
+	try:
+		position=title_string.index('&')
+	except ValueError:
+		return "".join(title_string)
+		break
 
 	title_string.insert(position,'a')
 	title_string.insert(position+1,'m')
