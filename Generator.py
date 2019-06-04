@@ -4,6 +4,18 @@ import os
 import sys 
 from random import *
 
+# Helper function needed to turn & intp &amp
+def format_title_special_chars(title):
+	title_string=title.split()
+	position=title_string.find('&')
+
+	title_string.insert(position,'a')
+	title_string.insert(position+1,'m')
+	title_string.insert(position+2,'p')
+
+	return "".join(title_string)
+
+
 class Generator:
 	def __init__(self,browser=None,channel_title=None,channel_link=None,channel_description=None):
 		''' This sets up the generator. The archived article titles and
@@ -48,8 +60,9 @@ class Generator:
 		self.new_descriptions=[]
 		
 		for title in self.browser.find_elements_by_css_selector(title_selector):
-			if title.text not in self.archived_titles:
-				self.new_titles.append(title.text)
+			new_title=format_title_special_chars(title.text)
+			if new_title not in self.archived_titles:
+				self.new_titles.append(new_title)
 
 		for link in self.browser.find_elements_by_css_selector(link_selector):
 			if link.get_attribute("href") not in self.archived_links:
