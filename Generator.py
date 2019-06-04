@@ -13,11 +13,12 @@ def format_title_special_chars(title):
 		position=title_string.index('&')
 	except ValueError:
 		return "".join(title_string)
-		break
 
-	title_string.insert(position,'a')
-	title_string.insert(position+1,'m')
-	title_string.insert(position+2,'p')
+	title_string.insert(position,' ')
+	title_string.insert(position+2,'a')
+	title_string.insert(position+3,'m')
+	title_string.insert(position+4,'p')
+	title_string.insert(position+5,' ')
 
 	return "".join(title_string)
 
