@@ -42,7 +42,7 @@ runs, it will create the .xml feed file, with no whitespaces in the name.  '''
 
 # Set webdriver as global
 options=webdriver.FirefoxOptions()
-#options.add_argument("--headless")
+options.add_argument("--headless")
 browser=webdriver.Firefox(options=options)
 
 
