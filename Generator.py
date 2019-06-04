@@ -17,6 +17,12 @@ class Generator:
 		description is set. The browser opens and waits for the
 		javascript to execute, and load the newly made html. '''
 
+		# Create titles and links if they don't exist.
+		if os.isfile("titles") is False:
+			open("titles","w").close()
+		if os.isfile("links") is False:
+			open("links","w").close()
+
 		titles=open("titles","r")
 		links=open("links","r")
 
