@@ -1,7 +1,8 @@
 from selenium import webdriver
+from selenium.webdriver.common.proxy import Proxy
 import os
-import sys
-
+import sys 
+from random import *
 ''' This is a simple python script that generates RSS feeds from any site.  It
 uses CSS selectors to identify titles, links and article descriptions.  When
 called with no argument, it asks for information like: channel title, link and
@@ -40,11 +41,48 @@ div:nth-child(2) > header:nth-child(1) > h3:nth-child(1)
 This is how it should look. When all of the arguments are set, and the program
 runs, it will create the .xml feed file, with no whitespaces in the name.  '''
 
-# Set webdriver as global
-options=webdriver.FirefoxOptions()
-options.add_argument("--headless")
-browser=webdriver.Firefox(options=options)
+''' Proxy setup. This is needed in case some site blocks your IP address. 
+Please be mindful and don't create too much traffic. Add a random delay between
+your scans '''
 
+# Load proxies from the list into an IP|PORT dictionary
+proxies=open("proxy_list","r")
+proxies_list={}
+IPs=[]
+
+for line in proxies.readlines():
+	IP=line.rstrip('\n').split(' ')[0]
+	IPs.append(IP)
+	PORT=line.rstrip('\n').split(' ')[1]
+	proxies_list[IP]=PORT
+
+proxies.close()
+
+
+# Randomize proxy settings each run
+HOST=IPs[randint(0,len(IPs)-1)]
+PORT=proxies_list[HOST]
+
+print(HOST)
+print(PORT)
+
+def setup_webdriver(PROXY_HOST,PROXY_PORT):
+	fp=webdriver.FirefoxProfile()
+	options=webdriver.FirefoxOptions()
+	options.add_argument("--headless")
+
+	# Set up proxy prefrences	
+	fp.set_preference("network.proxy.type", 1)
+	fp.set_preference("network.proxy.http",PROXY_HOST)
+	fp.set_preference("network.proxy.http_port",int(PROXY_PORT))
+	fp.set_preference("network.proxy.ssl",PROXY_HOST)
+	fp.set_preference("network.proxy.ssl_port",int(PROXY_PORT))
+	fp.set_preference("general.useragent.override","whater_useragent")
+	fp.update_preferences()
+
+	return webdriver.Firefox(firefox_profile=fp,options=options)
+
+browser=setup_webdriver(HOST,PORT)
 
 class Generator:
 	def __init__(self,channel_title=None,channel_link=None,channel_description=None):
@@ -231,4 +269,3 @@ def main():
 
 	browser.quit()
 main()
-
