@@ -12,6 +12,8 @@ RSS feeds.
 You will need the `selenium` module for python, as well as the necessary webdriver binary for your
 chosen web browser. For firefox I used [geckodriver](https://github.com/mozilla/geckodriver/releases).
 
+Update: You will also need the `tor` package, since proxying is done with Tor.
+
 ### Usage
 
 Stdin file format: 
